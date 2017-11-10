@@ -8,3 +8,4 @@
 具体接口说明见stack.h
 实现见stack.c
 一个简单的测试test_stack.c
+a
