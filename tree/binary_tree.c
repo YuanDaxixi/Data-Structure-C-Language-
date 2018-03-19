@@ -12,7 +12,7 @@ void inorder_walk(pBitree root)
     if (root)
     {
         inorder_walk(root->lchild);
-        printf("%d", root->key);
+        printf("%d\n", root->key);
         inorder_walk(root->rchild);
     }
 }
@@ -21,7 +21,7 @@ void preorder_walk(pBitree root)
 {
     if (root)
     {
-        printf("%d", root->key);
+        printf("%d\n", root->key);
         preorder_walk(root->lchild);
         preorder_walk(root->rchild);
     }
@@ -31,13 +31,13 @@ void postorder_walk(pBitree root)
 {
     if (root)
     {
-        preorder_walk(root->lchild);
-        preorder_walk(root->rchild);
-        printf("%d", root->key);
+        postorder_walk(root->lchild);
+        postorder_walk(root->rchild);
+        printf("%d\n", root->key);
     }
 }
 
-pBitree tree_search(const pBitree root, int key)
+pBitree tree_search(pBitree root, int key)
 {
     while (root)
     {
@@ -111,7 +111,7 @@ void tree_insert(pTree tree, pBitree node_x)
             hole = hole->lchild;
     }
 
-    (tree->lenght)++;
+    (tree->length)++;
     node_x->p = papa;
     if (papa == NULL)
         tree->root = node_x;
@@ -144,7 +144,7 @@ void tree_delete(pTree tree, pBitree node_x)
     }
     free(node_x->info);
     free(node_x);
-    (tree->lenght)--;
+    (tree->length)--;
 }
 
 void transplant(pTree tree, pBitree node_x, pBitree node_y)
@@ -165,12 +165,14 @@ void ruin_tree(pTree tree)
     {
         free_tree(tree->root);
         tree->root = NULL;
-        tree->lenght = 0;
+        tree->length = 0;
     }
 }
 
 static void free_tree(pBitree root)
 {
+    if (root == NULL)
+        return;
     free_tree(root->lchild);
     free_tree(root->rchild);
     free(root->info);
@@ -182,5 +184,11 @@ pBitree tree_new_node(Bitree value, size_t size)
     pBitree new_log = (pBitree)malloc(sizeof(Bitree));
     if (new_log)
         memcpy(new_log, &value, size);
-    return new_log
+    return new_log;
+}
+
+void tree_initial(pTree tree)
+{
+    tree->root = NULL;
+    tree->length = 0;
 }

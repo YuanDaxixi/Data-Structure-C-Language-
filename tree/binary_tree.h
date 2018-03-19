@@ -27,7 +27,7 @@ typedef Bitree *pBitree;
 
 typedef struct tree {
     pBitree root;
-    unsigned int lenght;
+    unsigned int length;
 }Tree;
 
 typedef Tree *pTree;
@@ -58,7 +58,7 @@ void postorder_walk(pBitree root);
  * <root> root of the binary tree
  * <key> the value searched, 'key' is a attribute of the Bitree structure
  */
-pBitree tree_search(const pBitree root, int key);
+pBitree tree_search(pBitree root, int key);
 
 /*
  * find the node whose 'key' attribute is minimum of the tree
@@ -132,4 +132,9 @@ void ruin_tree(pTree tree);
  */
 pBitree tree_new_node(Bitree value, size_t size);
 
+/*
+ * initialize a tree
+ * <tree> the tree
+ */
+void tree_initial(pTree tree);
 #endif
