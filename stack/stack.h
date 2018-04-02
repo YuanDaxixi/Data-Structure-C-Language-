@@ -137,7 +137,7 @@ type pop_##type(Stack *p_stack)                                 \
 	{                                                       \
 		data_loader = *((type *)p_stack->top->data);    \
 		prev_node = get_prev_node(p_stack, p_stack->top);\
-		free(p_stack->top->data);                       \
+		free(p_stack->top->data);                       \ // it seems a bug if data points to a array.
 		free(p_stack->top);                             \
 		p_stack->top = prev_node;                       \
 		p_stack->top->next = NULL;                      \
